@@ -1,7 +1,6 @@
 name: Actions workflow
 
-on: 
-  push:
+on: push
     branches:
       - master
       - "feature/*" # matches feature/feata, feature/featb, but doesnt match feature/feat/a
