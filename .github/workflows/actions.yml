@@ -1,42 +1,43 @@
-name: Actions workflow
+  name: Actions workflow
 
-on: push
-  branches:
-    - master
-    - "feature/*" # matches feature/feata, feature/featb, but doesnt match feature/feat/a
-    - "feature/**"
-    - "!feature/featC"
-  tags: 
-    v1.*
-  paths: 
-    "**.js"
-    "!filename.js"
-  # pull_request: 
-  #  types: [closed, assigned, opened, reopened]
-jobs: 
-  run-github-actions:
-    runs-on: ubuntu-latest
-    steps:
-      - name: List Files
-        run: |
-          pwd
-          ls -a
-          echo $GITHUB_SHA
-          echo $GITHUB_REPOSITORY
-          echo $GITHUB_WORKSPACE
-          echo "${{github.token}}"
-        #  git clone git@github:$GITHUB_REPOSITORY
-        #  git checkout $GITHIUB_SHA
-      - name: Checkout
-        uses: actions/checkout@v1
-      - name: List files after Checkout
-        run: | 
-          pwd
-          ls -a
-      - name: Simple JS Action
-        id: greet
-        uses: actions/hello-world-javascript-action@v1
-        with: 
-          who-to-greet: Muzammil
-      - name: Log Greeting Time
-        run: echo "{{steps.greet.outputs.time}}"
+  on: 
+    push:
+      branches:
+        - master
+        - "feature/*" # matches feature/feata, feature/featb, but doesnt match feature/feat/a
+        - "feature/**"
+        - "!feature/featC"
+    tags: 
+      v1.*
+    paths: 
+      "**.js"
+      "!filename.js"
+    # pull_request: 
+    #  types: [closed, assigned, opened, reopened]
+  jobs: 
+    run-github-actions:
+      runs-on: ubuntu-latest
+      steps:
+        - name: List Files
+          run: |
+            pwd
+            ls -a
+            echo $GITHUB_SHA
+            echo $GITHUB_REPOSITORY
+            echo $GITHUB_WORKSPACE
+            echo "${{github.token}}"
+          #  git clone git@github:$GITHUB_REPOSITORY
+          #  git checkout $GITHIUB_SHA
+        - name: Checkout
+          uses: actions/checkout@v1
+        - name: List files after Checkout
+          run: | 
+            pwd
+            ls -a
+        - name: Simple JS Action
+          id: greet
+          uses: actions/hello-world-javascript-action@v1
+          with: 
+            who-to-greet: Muzammil
+        - name: Log Greeting Time
+          run: echo "{{steps.greet.outputs.time}}"
