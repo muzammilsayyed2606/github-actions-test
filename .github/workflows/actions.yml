@@ -1,17 +1,16 @@
 name: Actions workflow
 
-on: 
-  push:
-    branches:
-      - master
-      - "feature/*" # matches feature/feata, feature/featb, but doesnt match feature/feat/a
-      - "feature/**"
-      - "!feature/featC"
-    tags: 
-      v1.*
-    paths: 
-      "**.js"
-      "!filename.js"
+on: push
+  branches:
+    - master
+    - "feature/*" # matches feature/feata, feature/featb, but doesnt match feature/feat/a
+    - "feature/**"
+    - "!feature/featC"
+  tags: 
+    v1.*
+  paths: 
+    "**.js"
+    "!filename.js"
   # pull_request: 
   #  types: [closed, assigned, opened, reopened]
 jobs: 
@@ -31,7 +30,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
       - name: List files after Checkout
-       run: | 
+        run: | 
           pwd
           ls -a
       - name: Simple JS Action
